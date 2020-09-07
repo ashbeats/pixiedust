@@ -448,7 +448,7 @@ class PixiedustInstall(InstallKernelSpec):
             suffix = url[url.rfind('.'):]
 
         if targetFile is None:
-            targetFile = tempfile.NamedTemporaryFile(suffix=suffix)
+            targetFile = os.path.join(tempfile.gettempdir(), os.urandom(24).hex() + "." + suffix)
 
         response = requests.get(url, stream=True)
         if not response.ok:
